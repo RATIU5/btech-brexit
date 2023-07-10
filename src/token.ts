@@ -1,17 +1,11 @@
 export enum TokenType {
-  TEXT,
-  HEADER1,
-  HEADER2,
-  HEADER3,
-  HEADER4,
-  HEADER5,
-  HEADER6,
-  BOLD,
-  ITALIC,
-  LINK,
-  CODE,
-  LIST,
-  LINE,
+  TEXT = "TEXT",
+  H1 = "H1",
+  H2 = "H2",
+  H3 = "H3",
+  H4 = "H4",
+  H5 = "H5",
+  H6 = "H6",
 }
 
 export class Token {
