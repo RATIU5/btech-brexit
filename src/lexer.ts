@@ -33,6 +33,25 @@ export class Lexer {
     }
   }
 
+  peekToChar(char: string): number {
+    if (char.length !== 1) {
+      throw new Error("Cannot read more than one character");
+    }
+    let i = -1;
+    if (this.readPosition >= this.input.length) {
+      return i;
+    } else {
+      i = 0;
+      while (
+        this.input[this.readPosition + i] !== char &&
+        this.input[this.readPosition + i] !== "\n"
+      ) {
+        i++;
+      }
+    }
+    return i;
+  }
+
   nextToken(): Token {
     let tok: Token;
 
@@ -57,6 +76,9 @@ export class Lexer {
       case "`":
         tok = this.newCodeToken();
         break;
+      case "[":
+        tok = this.newLinkNameToken();
+        break;
       case "\0":
         tok = this.newToken(TokenType.EOF, "");
         break;
@@ -70,10 +92,12 @@ export class Lexer {
 
   newLinkNameToken(): Token {
     let tok: Token;
-    while (this.peekChar() !== " " && this.peekChar() !== "]") {
-      this.readChar();
+    let countToEnd = this.peekToChar("]");
+    if (countToEnd === -1) {
+      tok = this.newToken(TokenType.TEXT, this.ch);
+    } else {
+      tok = this.newToken(TokenType.LINK_BRACKET, this.input[this.position]);
     }
-    tok = this.newToken(TokenType.TEXT, this.ch);
     return tok;
   }
 

@@ -18,6 +18,7 @@ export enum TokenType {
   STRIKE = "STRIKE",
   CODE = "CODE",
   CODE_BLOCK = "CODE_BLOCK",
+  LINK_BRACKET = "LINK_BRACKET",
 }
 
 export class Token {
