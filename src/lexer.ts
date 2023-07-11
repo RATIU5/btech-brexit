@@ -1,63 +1,53 @@
 import { Token, TokenType } from "./token";
 
 export class Lexer {
-  private _pos: number = 0;
-  private nextPos: number | undefined = undefined;
-  private tokens: Token[] = [];
-  private input: string = "";
+  private input: string = ""; // input string
+  private position: number = 0; // current position in input (points to current char)
+  private readPosition: number = 0; // current reading position in input (after current char)
+  private ch: string = "\0"; // current char under examination
 
   constructor(input: string) {
     this.input = input;
-    this.pos = 0;
+    this.readChar();
   }
 
-  private set pos(value: number) {
-    this._pos = value;
-    this.nextPos = this._pos + 1;
-  }
-  private get pos() {
-    return this._pos;
-  }
-
-  lex() {
-    while (this.pos < this.input.length) {
-      if (this.input[this.pos] === "#") {
-        let headingLevel = 1;
-        // while (this.input[this.nextPos!] === "#") {
-        //   this.pos += 1;
-        //   headingLevel += 1;
-        // }
-
-        switch (headingLevel) {
-          case 1:
-            this.addToken(TokenType.H1);
-            break;
-          case 2:
-            this.addToken(TokenType.H2);
-            break;
-          case 3:
-            this.addToken(TokenType.H3);
-            break;
-          case 4:
-            this.addToken(TokenType.H4);
-            break;
-          case 5:
-            this.addToken(TokenType.H5);
-            break;
-          case 6:
-            this.addToken(TokenType.H6);
-            break;
-        }
-      } else {
-        this.addToken(TokenType.TEXT);
-        this.pos += 1;
-      }
+  readChar() {
+    if (this.readPosition >= this.input.length) {
+      this.ch = "\0";
+    } else {
+      this.ch = this.input[this.readPosition]; // readPosition is the next char
     }
-    return this.tokens;
+    this.position = this.readPosition;
+    this.readPosition += 1;
   }
 
-  private addToken(type: TokenType) {
-    const value = this.input[this.pos];
-    this.tokens.push(new Token(type, value));
+  newToken(tokenType: TokenType, ch: string): Token {
+    return new Token(tokenType, ch);
+  }
+
+  peekChar(): string {
+    if (this.readPosition >= this.input.length) {
+      return "\0";
+    } else {
+      return this.input[this.readPosition];
+    }
+  }
+
+  nextToken(): Token {
+    let tok: Token;
+
+    switch (this.ch) {
+      case "#":
+        tok = this.newToken(TokenType.HASH, this.ch);
+        break;
+      case "\0":
+        tok = this.newToken(TokenType.EOF, "");
+        break;
+      default:
+        tok = this.newToken(TokenType.ANY, this.ch);
+    }
+
+    this.readChar();
+    return tok;
   }
 }

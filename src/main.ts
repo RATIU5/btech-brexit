@@ -1,4 +1,5 @@
 import { Lexer } from "./lexer";
+import { TokenType } from "./token";
 
 const lexer = new Lexer(`
 # H1
@@ -29,8 +30,11 @@ const lexer = new Lexer(`
 code block
 \`\`\`
 `);
-const tokens = lexer.lex();
 
-for (const token of tokens) {
-  console.log(`Type: ${token.type}, Value: ${token.value}`);
+for (
+  let tok = lexer.nextToken();
+  tok.type !== TokenType.EOF;
+  tok = lexer.nextToken()
+) {
+  console.log(tok);
 }
