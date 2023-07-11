@@ -4,9 +4,28 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/main.css" />
+    <link rel="stylesheet" href="/src/brexit.css" />
     <title>Brexit</title>
   </head>
   <body>
+    <div class="mainContainer">
+      <div class="container">
+        <textarea
+          id="input"
+          class="input"
+          placeholder="Enter markdown here..."
+        ></textarea>
+        <textarea
+          id="output"
+          class="output"
+          placeholder="Converted HTML..."
+        ></textarea>
+      </div>
+      <button id="convert" class="convert-button">Convert</button>
+    </div>
+
+    <div id="app" class="btech-swdp-page"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -1,0 +1,58 @@
+.mainContainer {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
+.box {
+  width: 48%;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input,
+.output {
+  width: 100%;
+  height: 400px;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.convert-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.convert-button:hover {
+  background-color: #45a049;
+}
+#app {
+  font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,41 +1,282 @@
-import { Lexer } from "./lexer";
-import { TokenType } from "./token";
+import { marked } from "marked";
 
-const lexer = new Lexer(`
-# H1
-## H2
-### H3
-#### H4
-##### H5
-###### H6
+const renderer = {
+  heading(text: string, level: number) {
+    return `<h${level} class="btech-swdp-heading">${text}</h${level}>`;
+  },
+};
 
-*italic*
-**bold**
-***bold italic***
+marked.use({
+  breaks: true,
+  gfm: true,
+  mangle: false,
+  headerIds: false,
+});
+marked.use({ renderer });
 
-- list item 1
-- list item 2
-- list item 3
+const input = `
+### Features
 
-> lorem ipsum dolor sit amet
-> consectetur adipiscing elit
+- Support Standard Markdown / CommonMark and GFM(GitHub Flavored Markdown);
+- Full-featured: Real-time Preview, Image (cross-domain) upload, Preformatted text/Code blocks/Tables insert, Code fold, Search replace, Read only, Themes, Multi-languages, L18n, HTML entities, Code syntax highlighting...;
+- Compatible with all major browsers (IE8+), compatible Zepto.js and iPad;
+- Support identification, interpretation, fliter of the HTML tags;
+- Support TeX (LaTeX expressions, Based on KaTeX), Flowchart and Sequence Diagram of Markdown extended syntax;
+- Support AMD/CMD (Require.js & Sea.js) Module Loader, and Custom/define editor plugins;
 
----
+# Editor.md
 
-~strikethrough~
+![](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png)
 
-[link](https://example.com)
+![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
 
-\`code\`
+
+**Table of Contents**
+
+# H1 header
+## H2 header
+### H3 header
+#### H4 header
+##### H5 header
+###### H6 header
+# Heading 1 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+## Heading 2 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+### Heading 3 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+#### Heading 4 link [Heading link](https://github.com/pandao/editor.md "Heading link") Heading link [Heading link](https://github.com/pandao/editor.md "Heading link")
+##### Heading 5 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+###### Heading 6 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+
+## Headers (Underline)
+
+H1 Header (Underline)
+=============
+
+H2 Header (Underline)
+-------------
+
+###Characters
+                
+----
+
+~~Strikethrough~~ <s>Strikethrough (when enable html tag decode.)</s>
+*Italic*      _Italic_
+**Emphasis**  __Emphasis__
+***Emphasis Italic*** ___Emphasis Italic___
+
+Superscript: X<sub>2</sub>，Subscript: O<sup>2</sup>
+
+**Abbreviation(link HTML abbr tag)**
+
+The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.
+
+### Blockquotes
+
+> Blockquotes
+
+Paragraphs and Line Breaks
+                    
+> "Blockquotes Blockquotes", [Link](http://localhost/)。
+
+### Links
+
+[Links](http://localhost/)
+
+[Links with title](http://localhost/ "link title")
+
+\`<link>\` : <https://github.com>
+
+[Reference link][id/name] 
+
+[id/name]: http://link-url/
+
+GFM a-tail link @pandao
+
+### Code Blocks (multi-language) & highlighting
+
+#### Inline code
+
+\`$ npm install marked\`
+
+#### Code Blocks (Indented style)
+
+Indented 4 spaces, like \`<pre>\` (Preformatted Text).
+
+    <?php
+        echo "Hello world!";
+    ?>
+    
+Code Blocks (Preformatted text):
+
+    | First Header  | Second Header |
+    | ------------- | ------------- |
+    | Content Cell  | Content Cell  |
+    | Content Cell  | Content Cell  |
+
+#### Javascript　
+
+\`\`\`javascript
+function test(){
+	console.log("Hello world!");
+}
+ 
+(function(){
+    var box = function(){
+        return box.fn.init();
+    };
+
+    box.prototype = box.fn = {
+        init : function(){
+            console.log('box.init()');
+
+			return this;
+        },
+
+		add : function(str){
+			alert("add", str);
+
+			return this;
+		},
+
+		remove : function(str){
+			alert("remove", str);
+
+			return this;
+		}
+    };
+    
+    box.fn.init.prototype = box.fn;
+    
+    window.box =box;
+})();
+
+var testBox = box();
+testBox.add("jQuery").remove("jQuery");
 \`\`\`
-code block
-\`\`\`
-`);
 
-for (
-  let tok = lexer.nextToken();
-  tok.type !== TokenType.EOF;
-  tok = lexer.nextToken()
-) {
-  console.log(tok);
+#### HTML code
+
+\`\`\`html
+<!DOCTYPE html>
+<html>
+    <head>
+        <mate charest="utf-8" />
+        <title>Hello world!</title>
+    </head>
+    <body>
+        <h1>Hello world!</h1>
+    </body>
+</html>
+\`\`\`
+
+### Images
+
+Image:
+
+![](https://pandao.github.io/editor.md/examples/images/4.jpg)
+
+> Follow your heart.
+
+![](https://pandao.github.io/editor.md/examples/images/8.jpg)
+
+> 图为：厦门白城沙滩 Xiamen
+
+图片加链接 (Image + Link)：
+
+[![](https://pandao.github.io/editor.md/examples/images/7.jpg)](https://pandao.github.io/editor.md/examples/images/7.jpg "李健首张专辑《似水流年》封面")
+
+> 图为：李健首张专辑《似水流年》封面
+                
+----
+
+### Lists
+
+#### Unordered list (-)
+
+- Item A
+- Item B
+- Item C
+     
+#### Unordered list (*)
+
+* Item A
+* Item B
+* Item C
+
+#### Unordered list (plus sign and nested)
+                
++ Item A
++ Item B
+    + Item B 1
+    + Item B 2
+    + Item B 3
++ Item C
+    * Item C 1
+    * Item C 2
+    * Item C 3
+
+#### Ordered list
+                
+1. Item A
+2. Item B
+3. Item C
+                
+----
+                    
+### Tables
+                    
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell 
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
+| Function name | Description                    |
+| ------------- | ------------------------------ |
+| \`help()\`      | Display the help window.       |
+| \`destroy()\`   | **Destroy your computer!**     |
+
+| Item      | Value |
+| --------- | -----:|
+| Computer  | $1600 |
+| Phone     |   $12 |
+| Pipe      |    $1 |
+
+| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |
+                
+----
+
+#### HTML entities
+
+&copy; &  &uml; &trade; &iexcl; &pound;
+&amp; &lt; &gt; &yen; &euro; &reg; &plusmn; &para; &sect; &brvbar; &macr; &laquo; &middot; 
+
+X&sup2; Y&sup3; &frac34; &frac14;  &times;  &divide;   &raquo;
+
+18&ordm;C  &quot;  &apos;
+
+## Escaping for Special Characters
+
+\\*literal asterisks\\*
+
+### End
+`;
+
+const res = marked.parse(input);
+console.log(res);
+const parser = new DOMParser();
+const documentContent = parser.parseFromString(res, "text/html");
+console.log(documentContent);
+const appElement = document.querySelector("#app");
+if (appElement) {
+  Array.from(documentContent.body.children).forEach((child) => {
+    appElement.appendChild(child);
+  });
 }
