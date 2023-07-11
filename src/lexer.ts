@@ -22,51 +22,38 @@ export class Lexer {
   lex() {
     while (this.pos < this.input.length) {
       if (this.input[this.pos] === "#") {
-        this.addHeaderToken();
+        let headingLevel = 1;
+        // while (this.input[this.nextPos!] === "#") {
+        //   this.pos += 1;
+        //   headingLevel += 1;
+        // }
+
+        switch (headingLevel) {
+          case 1:
+            this.addToken(TokenType.H1);
+            break;
+          case 2:
+            this.addToken(TokenType.H2);
+            break;
+          case 3:
+            this.addToken(TokenType.H3);
+            break;
+          case 4:
+            this.addToken(TokenType.H4);
+            break;
+          case 5:
+            this.addToken(TokenType.H5);
+            break;
+          case 6:
+            this.addToken(TokenType.H6);
+            break;
+        }
       } else {
         this.addToken(TokenType.TEXT);
         this.pos += 1;
       }
     }
     return this.tokens;
-  }
-
-  private addHeaderToken() {
-    let hashCount = 1;
-
-    while (this.input[this.nextPos!] === "#" && hashCount < 6) {
-      hashCount += 1;
-      this.pos++;
-    }
-
-    let tokenType: TokenType;
-    switch (hashCount) {
-      case 1:
-        tokenType = TokenType.H1;
-        break;
-      case 2:
-        tokenType = TokenType.H2;
-        break;
-      case 3:
-        tokenType = TokenType.H3;
-        break;
-      case 4:
-        tokenType = TokenType.H4;
-        break;
-      case 5:
-        tokenType = TokenType.H5;
-        break;
-      case 6:
-        tokenType = TokenType.H6;
-        break;
-      default:
-        throw new Error("Invalid header number");
-    }
-
-    // I don't know why, but it works
-    const value = this.input.slice(this.pos - hashCount + 1, this.pos + 2);
-    this.tokens.push(new Token(tokenType, value));
-    this.pos += hashCount;
   }
 
   private addToken(type: TokenType) {
