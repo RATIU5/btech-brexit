@@ -11,6 +11,7 @@ const lexer = new Lexer(`
 
 *italic*
 **bold**
+***bold italic***
 
 - list item 1
 - list item 2
@@ -21,7 +22,7 @@ const lexer = new Lexer(`
 
 ---
 
-~~strikethrough~~
+~strikethrough~
 
 [link](https://example.com)
 
