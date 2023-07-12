@@ -70,23 +70,14 @@
 
 .btech-brexit-codeblock {
   font-family: monospace;
-  background-color: #e2e8f0;
-  padding: 1rem;
+  background-color: #f2f5fa;
+  padding: 0.5rem;
   border-radius: 4px;
   font-size: 14px;
   line-height: 21px;
   width: 100%;
   overflow-x: auto;
   margin: 1rem 0;
-}
-
-.btech-brexit-code {
-  font-family: monospace;
-  background-color: #e2e8f0;
-  padding: 0.25em 0.5em;
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 21px;
 }
 
 .btech-brexit-list {
@@ -126,7 +117,7 @@
 
 .btech-brexit-codespan {
   font-family: monospace;
-  background-color: #e2e8f0;
+  background-color: #f2f5fa;
   padding: 0.25em 0.5em;
   border-radius: 4px;
   font-size: 14px;

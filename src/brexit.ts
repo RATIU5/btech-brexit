@@ -1,4 +1,7 @@
 import { marked } from "marked";
+import highlight from "highlight.js/lib/common";
+import "highlight.js/styles/github.css";
+
 export function brexit(input: string, prefix: string = "btech-brexit") {
   const renderer = {
     heading(text: string, level: number) {
@@ -32,8 +35,9 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
       return `<blockquote class="${prefix}-blockquote">${quote}</blockquote>`;
     },
 
-    code(code: string, _: string) {
-      return `<pre class="${prefix}-codeblock"><code class="${prefix}-code">${code}</code></pre>`;
+    code(code: string, language: string) {
+      const html = highlight.highlight(code, { language }).value;
+      return `<pre class="${prefix}-codeblock"><code class="${prefix}-code hljs">${html}</code></pre>`;
     },
 
     list(body: string, ordered: boolean) {
@@ -91,5 +95,5 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
   });
 
   marked.use({ renderer });
-  return marked.parse(input);
+  return `<div class="${prefix}-page">${marked.parse(input)}</div>`;
 }
