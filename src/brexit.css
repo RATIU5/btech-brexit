@@ -1,21 +1,60 @@
-.btech-swdp-page {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  font-size: 18px;
-  line-height: 2.25rem;
-  color: #324046;
-  display: block;
+.btech-brexit-page {
+  font-size: 16px;
+  line-height: 24px;
+  color: #1e293b;
   margin: 0 auto;
   display: flex;
   width: 100%;
-  max-width: 100ch;
-  font-size: 22px;
+  max-width: 75ch;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
 }
-.btech-swdp-heading {
+.btech-brexit-h1 {
+  font-size: 60px;
+  line-height: 60px;
+  font-weight: 700;
+  margin: 2rem 0 1rem 0;
+}
+.btech-brexit-h2 {
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: 700;
+  margin: 1.75rem 0 0.875rem 0;
+}
+.btech-brexit-h3 {
+  font-size: 36px;
+  line-height: 48px;
+  font-weight: 700;
+  margin: 3rem 0 2rem 0;
+}
+.btech-brexit-h4 {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  margin: 1.25rem 0 0.625rem 0;
+}
+.btech-brexit-h5 {
+  font-size: 21px;
+  line-height: 32px;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem 0;
+}
+.btech-brexit-h6 {
+  font-size: 18px;
+  line-height: 16px;
+  font-weight: 700;
+  margin: 0.75rem 0 0.75rem 0;
+}
+.btech-brexit-p {
+  font-size: 16px;
+  line-height: 28px;
+  margin: 0 0 1rem 0;
+  color: #334155;
+}
+.btech-brexit-hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 2rem;
+  width: calc(100% - 4rem);
 }

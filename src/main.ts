@@ -2,7 +2,30 @@ import { marked } from "marked";
 
 const renderer = {
   heading(text: string, level: number) {
-    return `<h${level} class="btech-swdp-heading">${text}</h${level}>`;
+    switch (level) {
+      case 1:
+        return `<h${level} class="btech-brexit-h1">${text}</h${level}>`;
+      case 2:
+        return `<h${level} class="btech-brexit-h2">${text}</h${level}>`;
+      case 3:
+        return `<h${level} class="btech-brexit-h3">${text}</h${level}>`;
+      case 4:
+        return `<h${level} class="btech-brexit-h4">${text}</h${level}>`;
+      case 5:
+        return `<h${level} class="btech-brexit-h5">${text}</h${level}>`;
+      case 6:
+        return `<h${level} class="btech-brexit-h6">${text}</h${level}>`;
+      default:
+        return `<h${level}>${text}</h${level}>`;
+    }
+  },
+
+  paragraph(text: string) {
+    return `<p class="btech-brexit-p">${text}</p>`;
+  },
+
+  hr() {
+    return `<hr class="btech-brexit-hr">`;
   },
 };
 
@@ -16,6 +39,8 @@ marked.use({ renderer });
 
 const input = `
 ### Features
+
+For interface design, a more practical approach is to simply pick values by hand. You don’t have to worry about subpixel rounding errors this way, and you have total control over which sizes exist instead of outsourcing that job to some mathematical formula.
 
 - Support Standard Markdown / CommonMark and GFM(GitHub Flavored Markdown);
 - Full-featured: Real-time Preview, Image (cross-domain) upload, Preformatted text/Code blocks/Tables insert, Code fold, Search replace, Read only, Themes, Multi-languages, L18n, HTML entities, Code syntax highlighting...;
@@ -33,12 +58,30 @@ const input = `
 
 **Table of Contents**
 
+---
+
 # H1 header
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, labore. Unde voluptates fuga vitae dicta eaque pariatur impedit earum laudantium voluptas! Eius eos tempora fugit quidem repellendus odit? Repudiandae eaque eum placeat minima possimus odit reiciendis voluptate, itaque et impedit sunt beatae nemo ab excepturi dolore delectus, aspernatur voluptatem enim accusantium, id porro debitis?
+
+Sit ut ab laboriosam officiis inventore aperiam accusamus. Quam magni numquam necessitatibus. Recusandae reiciendis distinctio culpa placeat sint fugit, repudiandae, consequatur assumenda, vel dolores ex? Vero rem doloribus quaerat exercitationem minima officiis, suscipit, voluptatibus harum obcaecati quia doloremque tempore illum laudantium vitae sunt aut at! Harum!
+
 ## H2 header
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, labore. Unde voluptates fuga vitae dicta eaque pariatur impedit earum laudantium voluptas! Eius eos tempora fugit quidem repellendus odit? Repudiandae eaque eum placeat minima possimus odit reiciendis voluptate, itaque et impedit sunt beatae nemo ab excepturi dolore delectus, aspernatur voluptatem enim accusantium, id porro debitis? Sit ut ab laboriosam officiis inventore aperiam accusamus. Quam magni numquam necessitatibus. Recusandae reiciendis distinctio culpa placeat sint fugit, repudiandae, consequatur assumenda, vel dolores ex? Vero rem doloribus quaerat exercitationem minima officiis, suscipit, voluptatibus harum obcaecati quia doloremque tempore illum laudantium vitae sunt aut at! Harum!
+
 ### H3 header
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, labore. Unde voluptates fuga vitae dicta eaque pariatur impedit earum laudantium voluptas! Eius eos tempora fugit quidem repellendus odit? Repudiandae eaque eum placeat minima possimus odit reiciendis voluptate, itaque et impedit sunt beatae nemo ab excepturi dolore delectus, aspernatur voluptatem enim accusantium, id porro debitis?
+
+Sit ut ab laboriosam officiis inventore aperiam accusamus. Quam magni numquam necessitatibus. Recusandae reiciendis distinctio culpa placeat sint fugit, repudiandae, consequatur assumenda, vel dolores ex? Vero rem doloribus quaerat exercitationem minima officiis, suscipit, voluptatibus harum obcaecati quia doloremque tempore illum laudantium vitae sunt aut at! Harum!
+
 #### H4 header
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, labore. Unde voluptates fuga vitae dicta eaque pariatur impedit earum laudantium voluptas! Eius eos tempora fugit quidem repellendus odit? Repudiandae eaque eum placeat minima possimus odit reiciendis voluptate, itaque et impedit sunt beatae nemo ab excepturi dolore delectus, aspernatur voluptatem enim accusantium, id porro debitis? Sit ut ab laboriosam officiis inventore aperiam accusamus. Quam magni numquam necessitatibus. Recusandae reiciendis distinctio culpa placeat sint fugit, repudiandae, consequatur assumenda, vel dolores ex? Vero rem doloribus quaerat exercitationem minima officiis, suscipit, voluptatibus harum obcaecati quia doloremque tempore illum laudantium vitae sunt aut at! Harum!
+
 ##### H5 header
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, labore. Unde voluptates fuga vitae dicta eaque pariatur impedit earum laudantium voluptas! Eius eos tempora fugit quidem repellendus odit? Repudiandae eaque eum placeat minima possimus odit reiciendis voluptate, itaque et impedit sunt beatae nemo ab excepturi dolore delectus, aspernatur voluptatem enim accusantium, id porro debitis? Sit ut ab laboriosam officiis inventore aperiam accusamus. Quam magni numquam necessitatibus. Recusandae reiciendis distinctio culpa placeat sint fugit, repudiandae, consequatur assumenda, vel dolores ex? Vero rem doloribus quaerat exercitationem minima officiis, suscipit, voluptatibus harum obcaecati quia doloremque tempore illum laudantium vitae sunt aut at! Harum!
+
 ###### H6 header
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, labore. Unde voluptates fuga vitae dicta eaque pariatur impedit earum laudantium voluptas! Eius eos tempora fugit quidem repellendus odit? Repudiandae eaque eum placeat minima possimus odit reiciendis voluptate, itaque et impedit sunt beatae nemo ab excepturi dolore delectus, aspernatur voluptatem enim accusantium, id porro debitis? Sit ut ab laboriosam officiis inventore aperiam accusamus. Quam magni numquam necessitatibus. Recusandae reiciendis distinctio culpa placeat sint fugit, repudiandae, consequatur assumenda, vel dolores ex? Vero rem doloribus quaerat exercitationem minima officiis, suscipit, voluptatibus harum obcaecati quia doloremque tempore illum laudantium vitae sunt aut at! Harum!
+
 # Heading 1 link [Heading link](https://github.com/pandao/editor.md "Heading link")
 ## Heading 2 link [Heading link](https://github.com/pandao/editor.md "Heading link")
 ### Heading 3 link [Heading link](https://github.com/pandao/editor.md "Heading link")
