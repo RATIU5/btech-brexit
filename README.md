@@ -23,3 +23,7 @@ All top level headings must be `h3` tags. `h1` is reserved by Canvas, and `h2` i
 ### Sub-headings are h5 and h6
 
 All sub headings must transition from an `h3` to a `h5` next and then a `h6` if needed. Do not break out of that order. This setup follows like an article/book layout. The theme was designed to work best this way.
+
+## Example
+
+![Example](public/screenshot.png)
