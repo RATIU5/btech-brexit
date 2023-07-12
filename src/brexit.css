@@ -123,12 +123,6 @@
   font-size: 14px;
   line-height: 21px;
 }
-
-.btech-brexit-link {
-  color: #3182ce;
-  text-decoration: none;
-}
-
 .btech-brexit-link:hover {
   text-decoration: underline;
 }
