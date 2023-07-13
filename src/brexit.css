@@ -68,6 +68,10 @@
   line-height: 28px;
 }
 
+.btech-brexit-blockquote .btech-brexit-p {
+  margin: 0;
+}
+
 .btech-brexit-codeblock {
   font-family: monospace;
   background-color: #f2f5fa;
@@ -97,7 +101,7 @@
 .btech-brexit-table-container {
   width: calc(100% - 1rem);
   overflow: hidden;
-  background-color: #f2f5fa;
+  background-color: #f8f9fc;
   border-radius: 8px;
   overflow-x: auto;
   padding: 0.5rem;
