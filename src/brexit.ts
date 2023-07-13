@@ -56,7 +56,7 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
     },
 
     table(header: string, body: string) {
-      return `<table class="${prefix}-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
+      return `<div class="${prefix}-table-container"><table class="${prefix}-table"><thead>${header}</thead><tbody>${body}</tbody></table></div>`;
     },
 
     tablerow(content: string) {

@@ -75,14 +75,15 @@
   border-radius: 4px;
   font-size: 14px;
   line-height: 21px;
-  width: 100%;
+  width: calc(100% - 1rem);
   overflow-x: auto;
   margin: 1rem 0;
+  border: none;
 }
 
 .btech-brexit-list {
   margin: 1rem 0;
-  padding-left: 1.5rem;
+  padding-left: 2.5rem;
 }
 
 .btech-brexit-listitem {
@@ -93,18 +94,43 @@
   margin-right: 0.5rem;
 }
 
+.btech-brexit-table-container {
+  width: calc(100% - 1rem);
+  overflow-x: auto;
+  background-color: #f2f5fa;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
 .btech-brexit-table {
   width: 100%;
+  min-width: 30rem;
   border-collapse: collapse;
   margin: 1rem 0;
+  border: none;
 }
 
 .btech-brexit-tablecell,
 .btech-brexit-tablerow {
   padding: 0.5rem;
-  border: 1px solid #e2e8f0;
   line-height: 24px;
   vertical-align: top;
+}
+
+.btech-brexit-tablerow {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tbody .btech-brexit-tablerow:last-child {
+  border-bottom: none;
+}
+
+.btech-brexit-tablecell {
+  border-right: 1px solid #e2e8f0;
+}
+
+.btech-brexit-tablecell:last-child {
+  border-right: none;
 }
 
 .btech-brexit-tablecell[align="center"] {
@@ -122,6 +148,7 @@
   border-radius: 4px;
   font-size: 14px;
   line-height: 21px;
+  border: none;
 }
 .btech-brexit-link:hover {
   text-decoration: underline;
