@@ -55,8 +55,8 @@
 .btech-brexit-hr {
   border: 0;
   border-top: 1px solid #e2e8f0;
-  margin: 2rem;
-  width: calc(100% - 4rem);
+  margin: 2rem 0;
+  width: 100%;
 }
 
 .btech-brexit-blockquote {
@@ -123,7 +123,7 @@
 }
 
 .btech-brexit-tablerow {
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #d7dfea;
 }
 
 tbody .btech-brexit-tablerow:last-child {
@@ -131,7 +131,7 @@ tbody .btech-brexit-tablerow:last-child {
 }
 
 .btech-brexit-tablecell {
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid #d7dfea;
 }
 
 .btech-brexit-tablecell:last-child {
@@ -160,6 +160,11 @@ tbody .btech-brexit-tablerow:last-child {
 }
 
 .btech-brexit-image {
-  max-width: 100%;
   height: auto;
+  display: block;
+  margin: 2rem auto;
+}
+
+.btech-brexit-p:has(> .btech-brexit-image) {
+  width: 100%;
 }
