@@ -4,27 +4,41 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/src/main.css" />
     <link rel="stylesheet" href="/src/brexit.css" />
     <title>Brexit</title>
   </head>
   <body>
     <div class="mainContainer">
-      <div class="container">
-        <textarea
-          id="input"
-          class="input"
-          placeholder="Enter markdown here..."
-        ></textarea>
-        <textarea
-          id="output"
-          class="output"
-          placeholder="Converted HTML..."
-        ></textarea>
+      <h2 class="play"><i>Brexit Converter</i></h2>
+      <div class="img-container enter-img">
+        <img src="./enter.png" alt="enter the markdown" />
       </div>
-      <button id="convert" class="convert-button">Convert</button>
-    </div>
+      <textarea
+        id="input"
+        class="input"
+        placeholder="Enter markdown here..."
+      ></textarea>
+      <div class="img-container copy-img">
+        <img src="./copy.png" alt="copy the html" />
+      </div>
 
+      <textarea
+        id="output"
+        class="output"
+        placeholder="Converted HTML..."
+        disabled
+      ></textarea>
+      <div class="img-container see-img">
+        <img src="./see.png" alt="see the result" />
+      </div>
+    </div>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

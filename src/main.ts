@@ -2,9 +2,8 @@ import { brexit } from "./brexit";
 
 const inputEl = document.querySelector("#input");
 const outputEl = document.querySelector("#output");
-const convertEl = document.querySelector("#convert");
 
-convertEl?.addEventListener("click", () => {
+inputEl?.addEventListener("input", () => {
   const prefix = "btech-brexit";
   const input = (inputEl as any)?.value;
   let res = "";
@@ -19,6 +18,7 @@ convertEl?.addEventListener("click", () => {
   console.log(documentContent);
   const appElement = document.querySelector("#app");
   if (appElement) {
+    appElement.innerHTML = "";
     Array.from(documentContent.body.children).forEach((child) => {
       appElement.appendChild(child);
     });
