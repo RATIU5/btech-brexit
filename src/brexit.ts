@@ -87,6 +87,35 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
     },
   };
 
+  const toggleBlock = {
+    name: "toggle-block",
+    level: "block",
+    start(src: string) {
+        const match = src.match(/\$--\[(.*?)\](.*?)--\$/s);
+        return match ? match.index : Infinity;
+    },
+    tokenizer(src, tokens) {
+        const rule = /^\$--\[(.*?)\](.*?)--\$/s;
+        const match = rule.exec(src);
+        if (match) {
+            let token = {
+                type: "toggle-block",
+                raw: match[0],
+                title: match[1],
+                body: match[2],
+                tokens: [],
+            }
+            this.lexer.inline(token.body, token.tokens);
+            return token;
+        }
+    },
+    renderer(token) {
+       return `<details> <summary>${token.title}</summary><div>${this.parser.parseInline(token.tokens)}</div></details>`; 
+    },
+  };
+
+  marked.use({ extensions: [toggleBlock] });
+
   marked.use({
     breaks: true,
     gfm: true,
