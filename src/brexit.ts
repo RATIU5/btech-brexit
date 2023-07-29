@@ -118,11 +118,11 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
     name: "alert-block",
     level: "block",
     start(src: string) {
-        const match = src.match(/::::/gs);
+        const match = src.match(/::::/);
         return match ? match.index : Infinity;
     },
     tokenizer(src: string, tokens: string[]) {
-        const rule = /::::\s*(red|green|blue|orange)\n(.*?)\n\s*::::/gs;
+        const rule = /^::::*(red|green|blue|orange)\n(.*?)\n\s*::::/s;
         const match = rule.exec(src);
         if (match) {
             let token = {
@@ -137,7 +137,7 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
         }
     },
     renderer(token) {
-        return `<div class="brexit-alert-${token.color}">${this.parser.parseInline(token.tokens)}</div>`;
+        return `<div class="btech-brexit-alert btech-brexit-${token.color}">${this.parser.parseInline(token.tokens)}</div>`;
     }
 }
 
