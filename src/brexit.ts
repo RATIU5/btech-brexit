@@ -110,11 +110,38 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
         }
     },
     renderer(token) {
-       return `<details> <summary>${token.title}</summary><div>${this.parser.parseInline(token.tokens)}</div></details>`; 
+       return `<details><summary>${token.title}</summary><div>${this.parser.parseInline(token.tokens)}</div></details>`; 
     },
   };
 
-  marked.use({ extensions: [toggleBlock] });
+  const alertBlock = {
+    name: "alert-block",
+    level: "block",
+    start(src: string) {
+        const match = src.match(/::::/gs);
+        return match ? match.index : Infinity;
+    },
+    tokenizer(src: string, tokens: string[]) {
+        const rule = /::::\s*(red|green|blue|orange)\n(.*?)\n\s*::::/gs;
+        const match = rule.exec(src);
+        if (match) {
+            let token = {
+                type: "alert-block",
+                raw: match[0],
+                color: match[1],
+                body: match[2],
+                tokens: [],
+            };
+            this.lexer.inline(token.body, token.tokens);
+            return token;
+        }
+    },
+    renderer(token) {
+        return `<div class="brexit-alert-${token.color}">${this.parser.parseInline(token.tokens)}</div>`;
+    }
+}
+
+  marked.use({ extensions: [toggleBlock, alertBlock] });
 
   marked.use({
     breaks: true,
