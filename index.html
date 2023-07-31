@@ -24,7 +24,30 @@
         id="input"
         class="input"
         placeholder="Enter markdown here..."
-      ></textarea>
+      >### Hello, Brexit!o
+
+      ##### Tables
+      You can write tables:
+      |Header 1|Header 2|Header 3|
+      |--------|--------|--------|
+      |Content 1| Content 2|Content3|
+      |Stuff 1 |Stuff 2 |Stuff 3 |
+
+      ##### Alerts
+      Alerts can be in the colors of "red", "orange", "green", "blue".
+
+      {% alert red "Title of Alert" %}
+      The content of the alert goes here
+      {% end %}
+
+      ##### Cuts
+
+      Cuts can be useful for hiding content.
+
+      {% cut "Title of the Cut" %}
+      Hehe, I'm hidden
+      {% end %}
+      </textarea>
       <div class="img-container copy-img">
         <img src="./copy.png" alt="copy the html" />
       </div>
