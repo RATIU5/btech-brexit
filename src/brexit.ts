@@ -91,11 +91,11 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
     name: "cut-block",
     level: "block",
     start(src: string) {
-        const match = src.match(/{%\s*cut/);
+        const match = src.match(/^{%\s*cut/);
         return match ? match.index : Infinity;
     },
     tokenizer(src, tokens) {
-        const rule = /{%\s*cut\s*"([^"]*)"\s*%}\s*([\s\S]*?)\s*{%\s*end\s*%}/g;
+        const rule = /^{%\s*cut\s*"([^"]*)"\s*%}\s*([\s\S]*?)\s*{%\s*end\s*%}/g;
         const match = rule.exec(src);
         if (match) {
             let token = {

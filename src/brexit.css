@@ -208,4 +208,18 @@ tbody .btech-brexit-tablerow:last-child {
 .btech-brexit-alert.btech-brexit-orange>p:first-child::before {
     content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23F19518'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
 }
-
+.btech-brexit-cut {
+    width: 100%;
+}
+.btech-brexit-cut-title {
+    padding: 1rem;
+    background: #fafafd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.btech-brexit-cut-body {
+    padding:1rem;
+    background: #f5f5f8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
