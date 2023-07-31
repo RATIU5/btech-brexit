@@ -15,7 +15,6 @@ inputEl?.addEventListener("input", () => {
 
   const parser = new DOMParser();
   const documentContent = parser.parseFromString(res, "text/html");
-  console.log(documentContent);
   const appElement = document.querySelector("#app");
   if (appElement) {
     appElement.innerHTML = "";

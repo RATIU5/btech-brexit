@@ -118,26 +118,43 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
     name: "alert-block",
     level: "block",
     start(src: string) {
-        const match = src.match(/::::/);
+        const match = src.match(/{%/);
         return match ? match.index : Infinity;
     },
     tokenizer(src: string, tokens: string[]) {
-        const rule = /^::::*(red|green|blue|orange)\n(.*?)\n\s*::::/s;
+        const rule = /^{%\s*(.*?)\s*(.*?)\s*(?:"(.*?)")?\s*%}\s*(.*?)\s*{%\s*(.*?)\s*%}/gs;
         const match = rule.exec(src);
         if (match) {
-            let token = {
-                type: "alert-block",
-                raw: match[0],
-                color: match[1],
-                body: match[2],
-                tokens: [],
-            };
-            this.lexer.inline(token.body, token.tokens);
+            let token;
+            switch (match[1]) {
+                case "tip": {
+                    token = {
+                        type: "tip-block",
+                        raw: match[0],
+                        color: match[2],
+                        body: match[3],
+                    };
+                    break;
+                }
+                default: {
+                    token = {
+                        type: "block",
+                        raw: match[0],
+                        body: match[3],
+                    }
+                }
+            }
             return token;
         }
     },
     renderer(token) {
-        return `<div class="btech-brexit-alert btech-brexit-${token.color}">${this.parser.parseInline(token.tokens)}</div>`;
+        switch(token.type) {
+            case "block":
+                return `<div>${this.parser.parseInline(token.tokens)}</div>`;
+            default:
+                return `<div>${this.parser.parseInline(token.tokens)}</div>`;
+        }
+        return `<div class="${prefix}-alert ${prefix}-${token.color}">${this.parser.parseInline(token.tokens)}</div>`;
     }
 }
 
