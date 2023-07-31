@@ -10,6 +10,9 @@
     align-items: flex-start;
     flex-direction: column;
 }
+.btech-brexit-page * {
+    box-sizing: border-box;
+}
 .btech-brexit-h1 {
     font-size: 60px !important;
     line-height: 60px;
@@ -73,12 +76,12 @@
     font-family: monospace;
     background-color: #f2f5fa;
     padding: 0.5rem;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 14px;
     line-height: 21px;
-    width: calc(100% - 1rem);
+    width: 100%;
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: 0 0 1rem 0;
     border: none;
 }
 .btech-brexit-list {
@@ -153,24 +156,56 @@ tbody .btech-brexit-tablerow:last-child {
 }
 .btech-brexit-alert {
     width: 100%;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin: 1rem 0;
+    border-radius: 10px;
+    margin: 0 0 1rem 0;
+    max-width: 1296px;
+    padding: 20px 20px 20px 64px;
+}
+.btech-brexit-alert>p {
+    margin: 0 0 10px;
+}
+.btech-brexit-alert>p:first-child {
+    font-weight: 700;
+    line-height: 1.25rem;
+}
+.btech-brexit-alert>p:first-child::before {
+    box-sizing: content-box;
+    display: block;
+    float: left;
+    height: 24px;
+    margin-left: -44px;
+    margin-top: -2px;
+    padding-right: 20px;
+    width: 24px;
+}
+.btech-brexit-alert>p:last-child {
+    margin: 0;
 }
 .btech-brexit-red {
     background: #fee2e2;
-    color: #7f1d1d;
+}
+.btech-brexit-alert.btech-brexit-red>p:first-child::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23FF4645'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
 }
 .btech-brexit-green {
     background: #dcfce7;
     color: #14532d;
 }
+.btech-brexit-alert.btech-brexit-green>p:first-child::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%2356BD67'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
+}
 .btech-brexit-blue {
     background: #dbeafe;
     color: #1e3a8a;
 }
+.btech-brexit-alert.btech-brexit-blue>p:first-child::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23027BF3'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
+}
 .btech-brexit-orange {
     background: #fef3c7;
     color: #78350f;
+}
+.btech-brexit-alert.btech-brexit-orange>p:first-child::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23F19518'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
 }
 

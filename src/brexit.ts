@@ -88,18 +88,18 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
   };
 
   const toggleBlock = {
-    name: "toggle-block",
+    name: "cut-block",
     level: "block",
     start(src: string) {
-        const match = src.match(/\$--\[(.*?)\](.*?)--\$/s);
+        const match = src.match(/{%\s*cut/);
         return match ? match.index : Infinity;
     },
     tokenizer(src, tokens) {
-        const rule = /^\$--\[(.*?)\](.*?)--\$/s;
+        const rule = /{%\s*cut\s*"([^"]*)"\s*%}\s*([\s\S]*?)\s*{%\s*end\s*%}/g;
         const match = rule.exec(src);
         if (match) {
             let token = {
-                type: "toggle-block",
+                type: "cut-block",
                 raw: match[0],
                 title: match[1],
                 body: match[2],
@@ -110,7 +110,7 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
         }
     },
     renderer(token) {
-       return `<details><summary>${token.title}</summary><div>${this.parser.parseInline(token.tokens)}</div></details>`; 
+       return `<details class="${prefix}-cut"><summary class="${prefix}-cut-title">${token.title}</summary><div class="${prefix}-cut-body">${this.parser.parseInline(token.tokens)}</div></details>`; 
     },
   };
 
@@ -118,43 +118,27 @@ export function brexit(input: string, prefix: string = "btech-brexit") {
     name: "alert-block",
     level: "block",
     start(src: string) {
-        const match = src.match(/{%/);
+        const match = src.match(/^{%\s*alert/);
         return match ? match.index : Infinity;
     },
     tokenizer(src: string, tokens: string[]) {
-        const rule = /^{%\s*(.*?)\s*(.*?)\s*(?:"(.*?)")?\s*%}\s*(.*?)\s*{%\s*(.*?)\s*%}/gs;
-        const match = rule.exec(src);
-        if (match) {
-            let token;
-            switch (match[1]) {
-                case "tip": {
-                    token = {
-                        type: "tip-block",
-                        raw: match[0],
-                        color: match[2],
-                        body: match[3],
-                    };
-                    break;
-                }
-                default: {
-                    token = {
-                        type: "block",
-                        raw: match[0],
-                        body: match[3],
-                    }
-                }
+        const rule = /^{%\s*alert\s*(.*?)\s*"([^"]*)"\s*%}\s*([^{%]*)\s*{%\s*end\s*%}/gs;
+            const match = rule.exec(src);
+            if (match) {
+                const token = {
+                    type: "alert-block",
+                    raw: match[0],
+                    color: match[1],
+                    title: match[2],
+                    body: match[3],
+                    tokens: [],
+                };
+                this.lexer.inline(token.body, token.tokens);
+                return token;
             }
-            return token;
-        }
-    },
+        },
     renderer(token) {
-        switch(token.type) {
-            case "block":
-                return `<div>${this.parser.parseInline(token.tokens)}</div>`;
-            default:
-                return `<div>${this.parser.parseInline(token.tokens)}</div>`;
-        }
-        return `<div class="${prefix}-alert ${prefix}-${token.color}">${this.parser.parseInline(token.tokens)}</div>`;
+        return `<div class="${prefix}-${token.color} ${prefix}-alert"><p class="${prefix}-alert-title">${token.title}</p><p>${token.body}</p></div>`;
     }
 }
 
