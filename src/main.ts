@@ -1,25 +1,39 @@
 import { brexit } from "./brexit";
 
 const inputEl = document.querySelector("#input");
-const outputEl = document.querySelector("#output");
+const buttonEl = document.querySelector("#html-button");
+let res = "";
+
+buttonEl.addEventListener("click", () => {
+    navigator.clipboard.writeText(res);
+    buttonEl.textContent = "Copied!";
+    setTimeout(() => {
+        buttonEl.textContent = "Copy HTML to Clipboard";
+    }, 2000);
+});
+
+if (inputEl?.value !== "") {
+    res = brexit((inputEl as any)?.value);
+  injectHTML(res);
+}
 
 inputEl?.addEventListener("input", () => {
-  const prefix = "btech-brexit";
-  const input = (inputEl as any)?.value;
-  let res = "";
-  if (input) {
-    res = brexit(input, prefix);
-  }
-
-  (outputEl as any)!.value = res;
-
-  const parser = new DOMParser();
-  const documentContent = parser.parseFromString(res, "text/html");
-  const appElement = document.querySelector("#app");
-  if (appElement) {
-    appElement.innerHTML = "";
-    Array.from(documentContent.body.children).forEach((child) => {
-      appElement.appendChild(child);
-    });
-  }
+    const prefix = "btech-brexit";
+    const input = (inputEl as any)?.value;
+    if (input) {
+        res = brexit(input, prefix);
+    }
+    injectHTML(res);  
 });
+
+function injectHTML(htmlString) {
+    const parser = new DOMParser();
+    const documentContent = parser.parseFromString(htmlString, "text/html");
+    const appElement = document.querySelector("#app");
+    if (appElement) {
+        appElement.innerHTML = "";
+        Array.from(documentContent.body.children).forEach((child) => {
+            appElement.appendChild(child);
+        });
+    }
+}
