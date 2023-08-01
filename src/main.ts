@@ -12,9 +12,9 @@ buttonEl.addEventListener("click", () => {
     }, 2000);
 });
 
-if (inputEl?.value !== "") {
+if ((inputEl as any)?.value !== "") {
     res = brexit((inputEl as any)?.value);
-  injectHTML(res);
+    injectHTML(res);
 }
 
 inputEl?.addEventListener("input", () => {
