@@ -5,6 +5,7 @@ const buttonEl = document.querySelector("#html-button");
 let res = "";
 
 buttonEl.addEventListener("click", () => {
+    if (res === "") return;
     navigator.clipboard.writeText(res);
     buttonEl.textContent = "Copied!";
     setTimeout(() => {
